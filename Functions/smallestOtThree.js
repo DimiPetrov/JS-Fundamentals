@@ -1,15 +1,19 @@
-function findSmallest(arg1, arg2, arg3) {
-    let n1 = Number(arg1);
-    let n2 = Number(arg2);
-    let n3 = Number(arg3);
+function findSmallest(x, y, z) {
+    let smallest = Number.MAX_SAFE_INTEGER;
 
-    if(n1 <= n2 && n1<= n3) {
-        console.log(n1);
-    } else if(n2 <= n1 && n2 <= n3) {
-        console.log(n2);
-    } else if(n3 <= n1 && n3 <= n2) {
-        console.log(n3);
+    smallest = smaller(x, smallest);
+    smallest = smaller(y, smallest);
+    smallest = smaller(z, smallest);
+    
+    function smaller(n, small) {
+        if(n < small) {
+            small = n;
+        }
+        return small;
     }
+
+    return smallest;
+
 }
 
-findSmallest(2, 5, 3)
+console.log(findSmallest(2, 5, 3));

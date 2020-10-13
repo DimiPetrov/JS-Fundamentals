@@ -1,10 +1,12 @@
-function sum(arg1, arg2, arg3) {
-    let n1 = Number(arg1);
-    let n2 = Number(arg2);
-    let n3 = Number(arg3);
+function sumAndSubtract(x, y, z) {
 
-    let sum = n1 + n2 - n3;
-    console.log(sum);
+    function sum(a, b) {
+        return a + b;
+    }
+
+    let result = sum(x, y);
+    return result - z;
+    
 }
 
-sum(23, 6, 10)
+console.log(sumAndSubtract(23, 6, 10));
