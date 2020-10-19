@@ -19,4 +19,4 @@ function solve(a, b, operator) {
     }
 }
 
-solve(5, 10, "multiply")
+solve(5, 10, "add")
