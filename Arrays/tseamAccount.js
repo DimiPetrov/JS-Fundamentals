@@ -5,19 +5,11 @@ function tseamAccount(input) {
         let [command, game] = input[i].split(' ')
 
         switch (command) {
-            case 'Install': install(game);
-                break;
-            case 'Uninstall': if (games.includes(game)) {
-                games.splice(i, 1);
-            }
-                break;
-            case 'Update': if (games.includes(game)) {
-                update(game);
-            }
-                break;
-            case 'Expansion': expansion(game);
-                break;
-            case 'Play!': break;
+            case 'Install': install(game); break;
+            case 'Uninstall': uninstall(game); break;
+            case 'Update': update(game); break;
+            case 'Expansion': expansion(game); break;
+            case 'Play!': console.log(games.join(' ')); break;
         }
     }
 
@@ -28,8 +20,15 @@ function tseamAccount(input) {
         return games;
     }
 
+    function uninstall(game) {
+        if (games.includes(game)) {
+        games.splice(i, 1);
+        }
+    }
+
     function update(game) {
-        for (let index = 0; index < games.length; index++) {
+        if (games.includes(game)) {
+            for (let index = 0; index < games.length; index++) {
             let currGame = games[index];
             if (currGame === game) {
                 games.splice(index, 1);
@@ -37,6 +36,7 @@ function tseamAccount(input) {
         }
         games.push(game);
         return games;
+        }
     }
 
     function expansion(game) {
@@ -52,10 +52,7 @@ function tseamAccount(input) {
             }
         }
         return games;
-
     }
-    console.log(games.join(' '));
-
 }
 
 tseamAccount(['CS WoW Diablo',
