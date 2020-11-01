@@ -1,14 +1,14 @@
 function solve(array) {
-    let dungeon = array[0].split('|');
+    let dungeon = array.shift().split('|');
     let health = 100;
     let coins = 0;
     let totalCoins = 0;
     let room = 0;
 
     for(let i = 0; i < array.length; i++) {
-        let currentRoom = dungeon[i].split(' ');
+        let currentRoom = dungeon[i].split(', ');
         let name = currentRoom[0];
-        let num = Number(currentRoom[1]);
+        let num = currentRoom[1];
         room++;
         if(name === 'potion') {
             if(health + num > 100) {
@@ -33,9 +33,11 @@ function solve(array) {
             }
         }
     }
+    if(health > 0) {
     console.log(`You've made it!`);
     console.log(`Coins: ${totalCoins}`);
-    console.log(`Health: ${health}`); 
+    console.log(`Health: ${health}`);
+    } 
 }
 
 solve(['rat', 10|'bat', 20|'potion', 10|'rat', 10|'chest', 100|'boss',

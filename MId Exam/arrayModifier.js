@@ -11,7 +11,7 @@ function solve(array) {
             case 'end': print(); break;
         }
     }
-    function swap(arr, index1, index2) {
+    function swap(index1, index2) {
         var temp;
         temp = arr[index1];
         arr[index1] = arr[index2];

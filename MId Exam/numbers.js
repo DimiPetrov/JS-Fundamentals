@@ -1,4 +1,4 @@
-function solve(input = String) {
+function solve(input) {
     let arr = input.split(' ').map(Number);
     let sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -11,7 +11,7 @@ function solve(input = String) {
             result.push(arr[i]);
         }
     }
-    if (result.length = 0) {
+    if (result.length === 0) {
         console.log(`No`);
     } else if (result.length <= 5 && result.length > 0) {
         let sorted = result.sort((a, b) => b - a);
