@@ -4,48 +4,45 @@ function solve(arr) {
     while (commands !== 'End') {
         let splitted = commands.split(' ');
         let command = splitted[0];
-        let index = splitted[1];
+        let index = Number(splitted[1]);
+        let value = Number(splitted[2]);
         switch (command) {
-            case 'Shoot': shoot(); break;
-            case 'Add': add(); break;
-            case 'Strike': strike(); break;
+            case 'Shoot': shoot(index, value); break;
+            case 'Add': add(index, value); break;
+            case 'Strike': strike(index, value); break;
         }
 
-        
-    }
-    function shoot(index, power) {
-        
-        let power = splitted[2];
-        if (sequence.includes(index)) {
-            sequence[index] -= power;
-            if (sequence[index] <= 0) {
-                sequence.splice(index, 1);
+        function shoot(index, power) {
+            if (sequence[index]) {
+                sequence[index] -= power;
+                if (sequence[index] <= 0) {
+                    sequence.splice(index, 1);
+                } else {
+                    sequence.splice(index, 1, sequence[index]);
+                }
             }
         }
-    }
 
-    function add(index, value) {
+        function add(index, value) {
+            if (index >= 0 && index < sequence.length) {
+                sequence.splice(index, 0, value);
+            } else {
+                console.log(`Invalid placement!`);
+            }
+        }
 
-        let value = splitted[2];
-        if (sequence.includes(index)) {
-            sequence[index] += value;
-        } else {
-            console.log(`Invalid placement!`);
-        }
-    }
+        function strike(index, radius) {
+            const radiusRange = 1 + (radius * 2);
+            const radiusStart = index - radius;
+            const radiusEnd = index + radius;
 
-    function strike(index, radius) {
-
-        let radius = splitted[2];
-        if (sequence.includes(index)) {
-            sequence.splice(index, 1);
+            if (radiusStart >= 0 && radiusEnd < sequence.length) {
+                sequence.splice(radiusStart, radiusRange);
+            } else {
+                console.log(`Strike missed!`);
+            }
         }
-        if (sequence.includes(index - radius)) {
-            sequence.splice(index - radius);
-        }
-        if (sequence.includes(index + radius)) {
-            sequence.splice(index + radius);
-        }
+        commands = arr.shift();
     }
     console.log(sequence.join('|'));
 }

@@ -1,5 +1,5 @@
 function solve(arr) {
-    let neighourhood = arr.shift().split('@');
+    let neighbourhood = arr.shift().split('@').map(Number);
     let commands = arr.shift();
     let currentHouse = 0;
 
@@ -7,14 +7,14 @@ function solve(arr) {
         let splitted = commands.split(' ');
         let jumpLength = Number(splitted[1]);
         currentHouse += jumpLength;
-        if(currentHouse > neighourhood.length) {
+        if(currentHouse >= neighbourhood.length) {
             currentHouse = 0;
         }
-        if(neighourhood[currentHouse] === 0) {
+        if(neighbourhood[currentHouse] === 0) {
             console.log(`Place ${currentHouse} already had Valentine's day.`);
         } else {
-            neighourhood[currentHouse] -= 2;
-            if(neighourhood[currentHouse] === 0){
+            neighbourhood[currentHouse] -= 2;
+            if(neighbourhood[currentHouse] === 0){
                 console.log(`Place ${currentHouse} has Valentine's day.`);
             }            
         }
@@ -25,7 +25,7 @@ function solve(arr) {
     let isSucces = true;
     let count = 0;
 
-    for(const house of neighourhood) {
+    for(const house of neighbourhood) {
         if(house !== 0) {
             isSucces = false;
             count++;

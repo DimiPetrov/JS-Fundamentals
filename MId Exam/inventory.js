@@ -26,21 +26,20 @@ function solve(arr) {
             }
             return inventory;
         }
-        function combine(item) {
-            if(item.includes(':')) {
-                let splited = item.split(':');
-                let oldItem = splited[0];
-                let newItem = splited[1];
-                if (inventory.includes(oldItem)) {
-                
-                    let sliced = inventory.slice(oldItem + 1);
-                    inventory.push(newItem);
-                    inventory.push(sliced);
-                }
+        function combine (item) {
+            if (item.includes(':')) {
+              let splited = item.split(':')
+              let oldItem = splited[0]
+              let newItem = splited[1]
+              if (inventory.includes(oldItem)) {
+                let indexOfOldItem = inventory.indexOf(oldItem)
+                inventory.splice(indexOfOldItem + 1, 0, newItem)
+              }
             }
-            
-            return inventory;
-        }
+      
+            return inventory
+          }
+        
         function renew(item) {
             if (inventory.includes(item)) {
                 let sliced = inventory.splice(item, 1);

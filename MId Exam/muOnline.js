@@ -20,14 +20,14 @@ function solve (array) {
       console.log(`Current health: ${health} hp.`)
     } else if (splitted[0] === 'chest') {
       bitcoins += Number(splitted[1])
-      console.log(`You found ${splitted[1]} coins.`)
+      console.log(`You found ${splitted[1]} bitcoins.`)
     } else {
       health -= Number(splitted[1])
       if (health > 0) {
         console.log(`You slayed ${splitted[0]}.`)
       } else {
         console.log(`You died! Killed by ${splitted[0]}.`)
-        console.log(`Best room: ${i + 1}.`)
+        console.log(`Best room: ${i + 1}`)
         isDead = true
         break
       }
@@ -35,7 +35,7 @@ function solve (array) {
   }
   if (isDead === false) {
     console.log(`You've made it!`)
-    console.log(`Coins: ${bitcoins}`)
+    console.log(`Bitcoins: ${bitcoins}`)
     console.log(`Health: ${health}`)
   }
 }
