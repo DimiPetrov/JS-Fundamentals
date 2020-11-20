@@ -22,7 +22,8 @@ function tseamAccount(input) {
 
     function uninstall(game) {
         if (games.includes(game)) {
-        games.splice(i, 1);
+            let index = games.indexOf(game);
+        games.splice(index, 1);
         }
     }
 

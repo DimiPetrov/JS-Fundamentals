@@ -9,10 +9,10 @@ function solve(arr) {
             if(parsedArr[i] < 30) {
                 parsedArr[i]++;
                 dailyConcrete += 195;
-                if(parsedArr == 30) {
+                if(parsedArr[i] == 30) {
                     sections--;
                 }
-            }
+            } 
         }
         totalConcrete += dailyConcrete;
         result.push(dailyConcrete);

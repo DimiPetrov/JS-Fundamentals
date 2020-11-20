@@ -1,12 +1,15 @@
-function solve(yield) {
+function solve(n) {
     let extract = 0;
     let day = 0;
-    while(yield >= 100) {
-        extract += yield - 26;
+    while (n >= 100) {
+        extract += n - 26;
         day++;
-        yield -= 10;
+        n -= 10;
     }
     extract -= 26;
+    if(extract < 0) {
+        extract = 0;
+    }
     console.log(day);
     console.log(extract);
 }

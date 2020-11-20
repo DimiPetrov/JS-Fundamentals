@@ -7,20 +7,25 @@ function equalArrays(arr1, arr2) {
         arr2[i] = Number(arr2[i]);
     }
 
-    let areEqual = true;
+    
     let sum = 0;
+    let areEqual = true;
+    let index = 0;
     for(let i = 0; i < arr1.length; i++) {
         if(arr1[i] !== arr2[i]) {
-            console.log(`Arrays are not identical. Found difference at ${i} index.`);
             areEqual = false;
             break;
         } else {
             sum += arr1[i];
         }
+        index++;
     }
-    if(areEqual = true) {
-    console.log(`Arrays are identical. Sum: ${sum}`); 
-    }  
+    if(areEqual) {
+        console.log(`Arrays are identical. Sum: ${sum}`); 
+    }  else {
+        console.log(`Arrays are not identical. Found difference at ${index} index`);
+    }
+    
 }
 
 equalArrays(['10', '21', '30'], ['10', '20', '30'] )
