@@ -6,7 +6,7 @@ function solve(input) {
         map.set(neighborhood, []);
     }
     
-    for(let i = 0; i < input.length; i++) {
+    while(input.length > 0) {
         let current = input.shift().split(' - ');
         let neighborhood = current[0];
         let person = current[1];
@@ -15,11 +15,14 @@ function solve(input) {
         }
     }
 
-    let sorted = Array.from(map).sort((a, b) => {neighborhood.length(b) - neighborhood.length(a)});
+    let sorted = Array.from(map).sort((a, b) => {return b[1].length - a[1].length});
+
     for(let neighborhood of sorted) {
-        console.log(`${neighborhood}: ${neighborhood.length}`);
-        for(let j = 0; j < neighborhood.length; j++) {
-            console.log(`--${person}`);
+        let neighborhoodName = neighborhood[0];
+        let persons = neighborhood[1];
+        console.log(`${neighborhoodName}: ${persons.length}`);
+        for(let j = 0; j < persons.length; j++) {
+            console.log(`--${persons[j]}`);
         }
     }
 }
