@@ -12,7 +12,7 @@ function solve(arr) {
                 if (e > targetValue) {
                     return e - targetValue;
                 } else {
-                    if (e < targetValue) return e + targetValue;
+                    if (e <= targetValue) return e + targetValue;
                 }
             });
         }
