@@ -7,7 +7,7 @@ function solve(input) {
     }
     
     for(let i = 0; i < input.length; i++) {
-        let current = input.split(' - ');
+        let current = input.shift().split(' - ');
         let neighborhood = current[0];
         let person = current[1];
         if(neighborhoods.includes(neighborhood)) {
