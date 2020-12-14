@@ -1,62 +1,78 @@
-function solve(input) {
-    let followers = {};
-    let count = 0;
+function solve (input) {
+  let followers = new Map()
 
-    let likes = 0;
-    let comments = 0;
+  let line = input.shift()
+  while (line != 'Log out') {
+    let [com, username, likesCount] = line.split(': ')
 
-    let line = input.shift();
-    while(line != 'Log out') {
-        let [com, username, likesCount] = line.split(': ');
-
-        if(com === 'New follower') {
-            if(!followers.hasOwnProperty(username)) {
-                followers[username] = [likes, comments];
-                count++;
-            }
-        } else if(com === 'Like') {
-            if(followers.hasOwnProperty(username)) {
-                likes[username] += likesCount;
-            } else { 
-                followers[username] = [likes, comments];
-                count++;
-            }
-        } else if(com === 'Comment') {
-            if(followers.hasOwnProperty(username)) {
-                comments[username]++;
-            } else {
-                followers[username] = [likes, comments];
-                comments++;
-                count++;
-            }
-        } else if(comm === 'Blocked') {
-            if(followers.include(username)) {
-                delete username[likes, comments];
-                count--;
-            } else {
-                console.log(`${username} doesn't exist.`);
-            }
-        }
-        line = input.shift();
+    if (com === 'New follower') {
+      if (followers.has(username)) {
+        //do nothing
+      } else {
+        let myNewFollower = new Object()
+        myNewFollower.username = username
+        myNewFollower.likes = 0
+        myNewFollower.comments = 0
+        followers.set(username, myNewFollower)
+      }
+    } else if (com === 'Like') {
+      if (followers.has(username)) {
+        followers.get(username).likes += Number(likesCount)
+      } else {
+        let myNewFollower = new Object()
+        myNewFollower.username = username
+        myNewFollower.likes = Number(likesCount)
+        myNewFollower.comments = 0
+        followers.set(username, myNewFollower)
+      }
+    } else if (com === 'Comment') {
+      if (followers.has(username)) {
+        followers.get(username).comments++
+      } else {
+        let myNewFollower = new Object()
+        myNewFollower.username = username
+        myNewFollower.likes = 0
+        myNewFollower.comments = 1
+        followers.set(username, myNewFollower)
+      }
+    } else if (comm === 'Blocked') {
+      if (followers.has(username)) {
+        followers.delete(username)
+      } else {
+        console.log(`${username}: doesn't exist.`)
+      }
     }
+    line = input.shift()
+  }
 
-    console.log(`${count} followers`);
-    let total = likes + comments;
-    let sorted = Object.keys(username).sort((a, b) => total[b] - total[a]);
-     for(let username of sorted) {
-         console.log(`${username}: ${total}`);
-     }
+  console.log(`${followers.size} followers`)
+  //here the Map is already populated
+
+  //after sorting, we will not use the Map anymore
+  //instead we have an Array called sorted
+  let sorted = Array.from(followers.values()).sort(
+    (a, b) => b.likes + b.comments - (a.likes + a.comments)
+  )
+
+  //now, we just need to display the followers
+  for (let follower of sorted) {
+    printFollower(follower)
+  }
+}
+
+//a function to print a follower
+function printFollower (follower) {
+  console.log(`${follower.username}: ${follower.likes + follower.comments}`)
 }
 
 solve([
-    'New follower: gosho',
-    'Like: gosho: 5',
-    'Comment: gosho',
-    'New follower: gosho',
-    'New follower: tosho',
-    'Comment: gosho',
-    'Comment: tosho',
-    'Comment: pesho',
-    'Log out'
-  ]
-  )
+  'New follower: gosho',
+  'Like: gosho: 5',
+  'Comment: gosho',
+  'New follower: gosho',
+  'New follower: tosho',
+  'Comment: gosho',
+  'Comment: tosho',
+  'Comment: pesho',
+  'Log out'
+])
