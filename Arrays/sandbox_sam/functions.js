@@ -2,7 +2,9 @@ let myFirstVariable = 'value1'
 let mySecondVariable = 'value2'
 
 let myFirstNumber = 7
-let mySecondNumber = 80
+const mySecondNumber = {
+  plop: 'toto'
+}
 
 function display (toto) {
   console.log(toto)
